@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Media Load Test</title>
+<style>
+  body{background:#0a0a0b;color:#f3f1ea;font-family:sans-serif;padding:40px;text-align:center;}
+  h1{color:#ff5a1f;}
+  img,video{max-width:500px;width:90%;margin:20px auto;display:block;border:2px solid #333;}
+  p{max-width:600px;margin:20px auto;line-height:1.6;}
+  .result{font-size:20px;font-weight:bold;margin-top:30px;padding:20px;border:2px solid #ff5a1f;}
+</style>
+</head>
+<body>
+<h1>MEDIA LOAD TEST</h1>
+<p>If you see a photo and a video playing below, external images/video work fine in your browser — the problem is something specific to the full site. If this page is ALSO blank, it's a browser/network setting blocking these external sites entirely.</p>
+
+<h3>Test Image (Unsplash)</h3>
+<img src="https://images.unsplash.com/photo-1637430308606-86576d8fef3c?auto=format&fit=crop&w=800&q=75" alt="Test gym photo">
+
+<h3>Test Image (Pexels)</h3>
+<img src="https://images.pexels.com/photos/1640771/pexels-photo-1640771.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Test food photo">
+
+<h3>Test Video (Mixkit)</h3>
+<video controls autoplay muted loop width="500">
+  <source src="https://assets.mixkit.co/active_storage/video_items/100544/1725385028/100544-video-720.mp4" type="video/mp4">
+</video>
+
+<div class="result" id="result">Checking...</div>
+
+<script>
+  let loaded = 0, failed = 0;
+  function check(){
+    document.getElementById('result').textContent =
+      loaded >= 2 ? '✅ SUCCESS — your browser CAN load external images. The problem is specific to the main site.' :
+      failed >= 2 ? '❌ BLOCKED — your browser/network is blocking these external sites. Check ad-blocker extensions or try a different network.' :
+      'Checking...';
+  }
+  document.querySelectorAll('img').forEach(img=>{
+    img.onload = ()=>{ loaded++; check(); };
+    img.onerror = ()=>{ failed++; check(); };
+  });
+  setTimeout(check, 4000);
+</script>
+</body>
+</html>
