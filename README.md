@@ -71,6 +71,10 @@ If images/video still don't appear, open `media-test.html` first — it isolates
 - Custom cursor, particle-field canvas backgrounds, 3D tilt cards, and page-transition wipes are all vanilla JS (no GSAP/Framer Motion dependency).
 - Forms (`appointment.html`, `contact.html`) currently submit via `mailto:` — no backend is connected. Wire up a real form endpoint before relying on them to capture leads.
 
+
+
+https://fitness-arena-gym-gamma.vercel.app/ for demo 
+
 ## Credits
 
 - Review data & staff names: Fitness Arena Gym's public Google Business listing.
